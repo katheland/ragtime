@@ -2,12 +2,13 @@ from nltk.stem import PorterStemmer
 import string
 
 def refine_query(query_string):
+    query_string = query_string.lower()
     query = query_string.translate(str.maketrans("", "", string.punctuation))
     s = open("data/stopwords.txt")
     stop_words = s.read().splitlines()
     s.close()
     stemmer = PorterStemmer()
-    q = query.lower().split(" ")
+    q = query.split()
     while "" in q:
         q.remove("")
     for word in q:
